@@ -19,15 +19,22 @@ function calculateAge(birthday) {
 
 function PlayerCard({ player, onDelete }) {
   const age = calculateAge(player.birthday);
+  let textColor = 'orange';
+  let fontSize = '';
+
+  // Check if player.called is equal to "yes" and change the color if true
+  if (player.called === 'yes') {
+    textColor = 'green';
+    fontSize = 'bold';
+  }
 
   return (
     <div className="col-md-3 mb-2">
       <div className="card">
-        <div className="card-header">{player.name} <span className="position-absolute end-0" style={{"fontSize":"12px"}}>{age} years</span></div>
+        <div className="card-header"><b>{player.name}</b><span className="position-absolute end-0" style={{"fontSize":"12px"}}>{age} years</span></div>
         <div className="card-body">
           <h5 className="card-title">{player.club}</h5>
-          <h5 className="card-title">Called: {player.called}</h5>
-
+          <h5 className="card-title" >Called : <span style={{ color: textColor, fontWeight:fontSize}}>{player.called}</span></h5>
           <Link to={`/update/${player.id}`}>
             <button className="btn btn-outline-secondary mx-1"><LuEdit/></button>
           </Link>

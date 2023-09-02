@@ -74,9 +74,12 @@ export default function Update() {
                         </td>
                     </tr>
                     <tr>
-                        <td>Play_As</td>
+                        <td>Play_as</td>
                         <td>
-                            : <input type="text" name="play" value={play} onChange={(e)=>{setPlay(e.target.value)}} className="my-3"/>
+                            : <input type="checkbox" name="play" value="goalkeeper" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Goalkeeper
+                            <input type="checkbox" name="play" value="defender" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Defender
+                            <input type="checkbox" name="play" value="midfielder" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Midfielder
+                            <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Forward
                         </td>
                     </tr>
                     <tr>

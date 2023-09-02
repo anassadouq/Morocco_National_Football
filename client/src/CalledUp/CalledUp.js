@@ -22,7 +22,8 @@ function PlayerCard({ player, onDelete }) {
     return (
         <div className="col-md-3 mb-2">
             <div className="card">
-                <div className="card-header">{player.name} 
+                <div className="card-header"> 
+                    <b>{player.name}</b> 
                     <span className="position-absolute end-0" style={{"fontSize":"12px"}}>{age} years</span>
                 </div>
                 <div className="card-body">
@@ -72,7 +73,6 @@ export default function CalledUp() {
     };
 
     return (
-        
         <div className="container">
             <div className="row">
                 <h2 className="text-success">Average Age : &nbsp;
