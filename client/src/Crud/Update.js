@@ -62,37 +62,52 @@ export default function Update() {
             <form onSubmit={updatePlayer}>
                 <table>
                     <tr>
-                        <td>Name</td>
                         <td>
-                            : <input type="text" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} className="my-3"/>
+                            <b>Name</b>
+                        </td>
+                        <td>
+                            <b> : </b>
+                            <input type="text" name="name" value={name} onChange={(e)=>{setName(e.target.value)}} className="my-4"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>Birthday</td>
                         <td>
-                            : <input type="text" name="birthday" value={birthday} onChange={(e)=>{setBirthday(e.target.value)}} className="my-3"/>
+                            <b>Birthday</b>
+                        </td>
+                        <td>
+                            <b> : </b>
+                            <input type="date" name="birthday" value={birthday} onChange={(e)=>{setBirthday(e.target.value)}} className="my-4"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>Play_as</td>
                         <td>
-                            : <input type="checkbox" name="play" value="goalkeeper" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Goalkeeper
-                            <input type="checkbox" name="play" value="defender" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Defender
-                            <input type="checkbox" name="play" value="midfielder" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Midfielder
-                            <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-3 mx-1"/>Forward
+                            <b>Play_as</b>
+                        </td>
+                        <td>
+                            <b> : </b>
+                            <input type="checkbox" name="play" value="goalkeeper" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1" checked={play === "goalkeeper"}/>Goalkeeper
+                            <input type="checkbox" name="play" value="defender" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1" checked={play === "defender"}/>Defender
+                            <input type="checkbox" name="play" value="midfielder" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1" checked={play === "midfielder"}/>Midfielder
+                            <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1" checked={play === "forward"}/>Forward
                         </td>
                     </tr>
                     <tr>
-                        <td>Club</td>
                         <td>
-                            : <input type="text" name="club" value={club} onChange={(e)=>{setClub(e.target.value)}} className="my-3"/>
+                            <b>Club</b>
+                        </td>
+                        <td>
+                            <b> : </b>
+                            <input type="text" name="club" value={club} onChange={(e)=>{setClub(e.target.value)}} className="my-4"/>
                         </td>
                     </tr>
                     <tr>
-                        <td>Called</td>
                         <td>
-                            : <input type="radio" name="called" value="yes" onChange={(e)=>{setCalled(e.target.value)}} className="my-3 mx-1"/>Yes
-                            <input type="radio" name="called" value="no" onChange={(e)=>{setCalled(e.target.value)}} className="my-3 mx-1"/>No 
+                            <b>Called</b>
+                        </td>
+                        <td>
+                            <b> : </b>
+                            <input type="radio" name="called" value="yes" onChange={(e)=>{setCalled(e.target.value)}} className="my-4 mx-1" checked={called === "yes"}/>Yes
+                            <input type="radio" name="called" value="no" onChange={(e)=>{setCalled(e.target.value)}} className="my-4 mx-1" checked={called === "no"}/>No 
                             <button className="btn btn-secondary mx-2"><LuEdit/> Player</button>                       
                         </td>
                     </tr>
