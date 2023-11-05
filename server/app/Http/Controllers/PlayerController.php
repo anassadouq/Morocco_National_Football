@@ -17,7 +17,32 @@ class PlayerController extends Controller {
 
     public function store(Request $request)
     {
-        return response(Player::create($request->all()));
+        $request->validate([
+            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'birthday' => 'required',
+            'play' => 'required',
+            'club' => 'required',
+            'called' => 'required',
+        ]);
+    
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $image = new Player([
+                'name' => $request->input('name'),
+                'image' => $imagePath,
+                'birthday' => $request->input('birthday'),
+                'play' => $request->input('play'),
+                'club' => $request->input('club'),
+                'called' => $request->input('called'),
+            ]);
+    
+            $image->save();
+        }
+    
+        return response()->json([
+            'message' => 'Image created successfully',
+        ]);
     }
 
     public function show(Player $player){

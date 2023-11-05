@@ -31,14 +31,31 @@ function PlayerCard({ player, onDelete }) {
   return (
     <div className="col-md-3 mb-2">
       <div className="card">
-        <div className="card-header"><b>{player.name}</b><span className="position-absolute end-0" style={{"fontSize":"12px"}}>{age} years</span></div>
+        <div className="card-header" style={{ padding: "0" }}>
+          <img src={`http://127.0.0.1:8000/storage/${player.image}`} style={{ width: "100%" }}/>
+        </div>
         <div className="card-body">
+          <h5 className="card-title">
+            <b>{player.name}</b>
+            <span className="position-absolute end-0" style={{ fontSize: "12px" }}>
+              {age} years
+            </span>
+          </h5>
           <h5 className="card-title">{player.club}</h5>
-          <h5 className="card-title" >Called : <span style={{ color: textColor, fontWeight:fontSize}}>{player.called}</span></h5>
+          <h5 className="card-title">
+            Called :{" "}
+            <span style={{ color: textColor, fontWeight: fontSize }}>
+              {player.called}
+            </span>
+          </h5>
           <Link to={`/update/${player.id}`}>
-            <button className="btn btn-outline-secondary mx-1"><LuEdit/></button>
+            <button className="btn btn-outline-secondary mx-1">
+              <LuEdit />
+            </button>
           </Link>
-          <button onClick={() => onDelete(player.id)} className="btn btn-outline-danger"><RiDeleteBin5Line/></button>
+          <button onClick={() => onDelete(player.id)} className="btn btn-outline-danger">
+            <RiDeleteBin5Line />
+          </button>
         </div>
       </div>
     </div>

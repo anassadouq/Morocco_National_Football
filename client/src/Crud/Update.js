@@ -37,25 +37,26 @@ export default function Update() {
     const updatePlayer = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('_method', 'PATCH')
-        formData.append('name', name)
-        formData.append('birthday', birthday)
-        formData.append('play', play)
-        formData.append('club', club)
-        formData.append('called', called)
-
-        await axios.post('http://127.0.0.1:8000/api/player/' + id, formData)
-        .then(({ data }) => {
-            console.log(data.message)
-            navigate('/all_players')
-        }).catch(({ response }) => {
-            if (response.status == 422) {
-                console.log(response.data.errors)
-            } else {
-                console.log(response.data.message)
-            }
-        })
-    }
+        formData.append('_method', 'PATCH');
+        formData.append('name', name);
+        formData.append('birthday', birthday);
+        formData.append('play', play);
+        formData.append('club', club);
+        formData.append('called', called);
+    
+        await axios.post(`http://127.0.0.1:8000/api/player/${id}`, formData)
+            .then(({ data }) => {
+                console.log(data.message);
+                navigate('/all_players');
+            })
+            .catch(({ response }) => {
+                if (response.status === 422) {
+                    console.log(response.data.errors);
+                } else {
+                    console.log(response.data.message);
+                }
+            });
+    }      
 
     return (
         <center>
