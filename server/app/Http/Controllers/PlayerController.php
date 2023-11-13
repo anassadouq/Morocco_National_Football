@@ -51,17 +51,31 @@ class PlayerController extends Controller {
         ]);
     }
  
-    public function update(Request $request, Player $player){
+    public function update(Request $request, Player $player)
+    {
         $request->validate([
             'name'=>'required',
             'birthday'=>'required',
             'play'=>'required',
             'club'=>'required',
             'called'=>'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        $player->fill($request->post())->update();
+    
+        $player->fill($request->except('image'))->update();
+    
+        if ($request->hasFile('image')) {
+            // Supprimez l'ancienne image s'il y en a une
+            Storage::disk('public')->delete($player->image);
+    
+            // Enregistrez la nouvelle image
+            $imagePath = $request->file('image')->store('images', 'public');
+            $player->image = $imagePath;
+            $player->save();
+        }
+    
         return response()->json([
-            'message' => 'Item updated successfully'
+            'message' => 'Player updated successfully'
         ]);
     }
 

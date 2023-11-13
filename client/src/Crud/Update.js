@@ -7,7 +7,8 @@ export default function Update() {
 
     const navigate = useNavigate();
     const { id } = useParams();
-
+    
+    const [image, setImage] = useState(null);
     const [name,setName] = useState('')
     const [birthday,setBirthday] = useState('')
     const [play,setPlay] = useState('')
@@ -22,7 +23,8 @@ export default function Update() {
     const fetchPlayer = async() =>{
         await axios.get(`http://127.0.0.1:8000/api/player/${id}`)
         .then(({ data }) => {
-            const { name, birthday, play, club, called } = data.player
+            const { /*image,*/ name, birthday, play, club, called } = data.player
+            //setImage(image)
             setName(name)
             setBirthday(birthday)
             setPlay(play)
@@ -38,6 +40,7 @@ export default function Update() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('_method', 'PATCH');
+        // formData.append('image', image);
         formData.append('name', name);
         formData.append('birthday', birthday);
         formData.append('play', play);
@@ -62,6 +65,17 @@ export default function Update() {
         <center>
             <form onSubmit={updatePlayer}>
                 <table>
+                    {/*
+                    <tr>
+                        <td>
+                            <b>Image</b>
+                        </td>
+                        <td>
+                            <b> : </b>
+                            <input type="file" name="image" onChange={(e)=>{setImage(e.target.files[0])}} className="my-4"/>
+                        </td>
+                    </tr>
+                    */}
                     <tr>
                         <td>
                             <b>Name</b>
