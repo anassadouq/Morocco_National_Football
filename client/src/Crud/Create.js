@@ -39,69 +39,80 @@ export default function Create(){
 
     return(
         <center>
-            <form method="post" onSubmit={createPlayer}>
-                <table>
-                    <tr>
-                        <td>
-                            <b>Name</b>
-                        </td>
-                        <td>
-                            <b> : </b>
-                            <input type="text" name="name" onChange={(e)=>{setName(e.target.value)}} className="my-4"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Image</b>
-                        </td>
-                        <td>
-                            <b> : </b>
-                            <input type="file" name="image" onChange={(e)=>setImage(e.target.files[0])} className="my-4"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Birthday</b>
-                        </td>
-                        <td>
-                            <b> : </b>
-                            <input type="date" name="birthday" onChange={(e)=>{setBirthday(e.target.value)}} className="my-4"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Play_as</b>
-                        </td>
-                        <td>
-                            <b> : </b>
-                            <input type="checkbox" name="play" value="goalkeeper" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Goalkeeper
-                            <input type="checkbox" name="play" value="defender" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Defender
-                            <input type="checkbox" name="play" value="midfielder" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Midfielder
-                            <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Forward
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Club</b>
-                        </td>
-                        <td>
-                            <b> : </b>
-                            <input type="text" name="club" onChange={(e)=>{setClub(e.target.value)}} className="my-4"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Called</b>
-                        </td>
-                        <td>
-                            <b> : </b>
-                            <input type="radio" name="called" value="yes" onChange={(e)=>{setCalled(e.target.value)}} className="my-4 mx-1"/>Yes
-                            <input type="radio" name="called" value="no" onChange={(e)=>{setCalled(e.target.value)}} className="my-4 mx-1"/>No
-                            <button className="btn btn-warning my-3 mx-2"><BiAddToQueue/> Player</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+            <div className="my-3">
+                <div className="my-4 card mx-auto" style={{ maxWidth: '600px' }}>
+                    <div className="card-body">
+                        <form method="post" onSubmit={createPlayer}>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <b>Name</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="text" name="name" onChange={(e)=>{setName(e.target.value)}} className="my-4"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Image</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="file" name="image" onChange={(e)=>setImage(e.target.files[0])} className="my-4"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Birthday</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="date" name="birthday" onChange={(e)=>{setBirthday(e.target.value)}} className="my-4"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Play_as</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="checkbox" name="play" value="goalkeeper" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Goalkeeper
+                                        <input type="checkbox" name="play" value="defender" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Defender
+                                        <input type="checkbox" name="play" value="midfielder" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Midfielder
+                                        <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1"/>Forward
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Club</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="text" name="club" onChange={(e)=>{setClub(e.target.value)}} className="my-4"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Called</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="radio" name="called" value="yes" onChange={(e)=>{setCalled(e.target.value)}} className="my-4 mx-1"/>Yes
+                                        <input type="radio" name="called" value="no" onChange={(e)=>{setCalled(e.target.value)}} className="my-4 mx-1"/>No
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <button className="form-control btn btn-warning btn-block"><BiAddToQueue/> Player</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </center>
     )
 }

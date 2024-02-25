@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { LuEdit } from 'react-icons/lu';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { BiAddToQueue } from 'react-icons/bi';
+import Navbar from "../Navbar/Navbar";
 
 function calculateAge(birthday) {
   const birthDate = new Date(birthday);
@@ -91,29 +92,32 @@ export default function Liste() {
   };
 
   return (
-    <div className="container">
-      <Link to="/create">
-        <button className="btn btn-warning my-3"><BiAddToQueue/> Players</button>
-      </Link>
+    <div>
+      <Navbar/>
+      <div className="container">
+        <Link to="/create">
+          <button className="btn btn-warning my-3"><BiAddToQueue/> Players</button>
+        </Link>
 
-      <div className="row">
-        <h1>Goalkeepers</h1>
-        {filterAndRenderPlayers("goalkeeper")}
-      </div> <hr/>
+        <div className="row">
+          <h1>Goalkeepers</h1>
+          {filterAndRenderPlayers("goalkeeper")}
+        </div> <hr/>
 
-      <div className="row">
-        <h1>Defender</h1>
-        {filterAndRenderPlayers("defender")}
-      </div> <hr/>
+        <div className="row">
+          <h1>Defender</h1>
+          {filterAndRenderPlayers("defender")}
+        </div> <hr/>
 
-      <div className="row">
-        <h1>Midfielder</h1>
-        {filterAndRenderPlayers("midfielder")}
-      </div> <hr/>
+        <div className="row">
+          <h1>Midfielder</h1>
+          {filterAndRenderPlayers("midfielder")}
+        </div> <hr/>
 
-      <div className="row">
-        <h1>Forward</h1>
-        {filterAndRenderPlayers("forward")}
+        <div className="row">
+          <h1>Forward</h1>
+          {filterAndRenderPlayers("forward")}
+        </div>
       </div>
     </div>
   );

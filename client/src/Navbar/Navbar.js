@@ -1,6 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
+import { AccountService } from "../Authentification/AccountService";
+import { BiLogOut } from "react-icons/bi";
+
 export default function Navbar(){
+    const navigate = useNavigate();
+    const logout = () => {
+        AccountService.logout()
+        navigate('/login')
+    }
+    
     return(
         <nav class="navbar navbar-expand-lg container">
             <div class="container-fluid">
@@ -26,6 +35,15 @@ export default function Navbar(){
                         </li>
                     </ul>
                 </div>
+            </div>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                </ul>
+                <form className="d-flex">
+                    <button className='btn btn-dark' onClick={logout}><BiLogOut/></button>
+                </form>
             </div>
         </nav>
     )

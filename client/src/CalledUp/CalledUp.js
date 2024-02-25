@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { LuEdit } from 'react-icons/lu';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import Navbar from "../Navbar/Navbar";
 
 function calculateAge(birthday) {
     const birthDate = new Date(birthday);
@@ -82,30 +83,33 @@ export default function CalledUp() {
     };
 
     return (
-        <div className="container">
-            <div className="row">
-                <h2 className="text-success">Average Age : &nbsp;
-                    {calculateAverageAgeAll(players.filter(item => item.called === "yes")).toFixed(1)} years
-                </h2>
-            </div>
-            <div className="row my-2">
-                <h1>Goalkeepers</h1>
-                {filterAndRenderPlayers("goalkeeper", "yes")}
-            </div><hr/>
+        <div>
+            <Navbar/>
+            <div className="container">
+                <div className="row">
+                    <h2 className="text-success">Average Age : &nbsp;
+                        {calculateAverageAgeAll(players.filter(item => item.called === "yes")).toFixed(1)} years
+                    </h2>
+                </div>
+                <div className="row my-2">
+                    <h1>Goalkeepers</h1>
+                    {filterAndRenderPlayers("goalkeeper", "yes")}
+                </div><hr/>
 
-            <div className="row">
-                <h1>Defender</h1>
-                {filterAndRenderPlayers("defender", "yes")}
-            </div><hr/>
+                <div className="row">
+                    <h1>Defender</h1>
+                    {filterAndRenderPlayers("defender", "yes")}
+                </div><hr/>
 
-            <div className="row">
-                <h1>Midfielder</h1>
-                {filterAndRenderPlayers("midfielder", "yes")}
-            </div><hr/>
+                <div className="row">
+                    <h1>Midfielder</h1>
+                    {filterAndRenderPlayers("midfielder", "yes")}
+                </div><hr/>
 
-            <div className="row">
-                <h1>Forward</h1>
-                {filterAndRenderPlayers("forward", "yes")}
+                <div className="row">
+                    <h1>Forward</h1>
+                    {filterAndRenderPlayers("forward", "yes")}
+                </div>
             </div>
         </div>
     );
