@@ -70,8 +70,11 @@ export default function CalledUp() {
     };
 
     const deletePlayer = async (id) => {
-        await axios.delete(`http://127.0.0.1:8000/api/player/${id}`);
-        fetchPlayers();
+        const confirmDelete = window.confirm("Are you sure you want to delete this player?");
+        if (confirmDelete) {
+          await axios.delete(`http://127.0.0.1:8000/api/player/${id}`);
+          fetchPlayers();
+        }
     };
 
     const filterAndRenderPlayers = (position, called) => {
