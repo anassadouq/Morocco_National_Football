@@ -42,7 +42,7 @@ function PlayerCard({ player, onDelete }) {
               {age} years
             </span>
           </h5>
-          <h5 className="card-title">{player.club}</h5>
+          <img src={`http://127.0.0.1:8000/storage/${player.club}`} style={{ width: "15%" }}/>
           <h5 className="card-title">
             Called :{" "}
             <span style={{ color: textColor, fontWeight: fontSize }}>

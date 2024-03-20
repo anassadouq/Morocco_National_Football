@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class PlayerController extends Controller {
-
+class PlayerController extends Controller
+{
     public function index()
     {
-        return response(Player::all());
+        return response()->json(Player::all());
     }
 
     public function store(Request $request)
@@ -22,65 +20,84 @@ class PlayerController extends Controller {
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'birthday' => 'required',
             'play' => 'required',
-            'club' => 'required',
+            'club' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Changed 'club' validation to image
             'called' => 'required',
         ]);
-    
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $image = new Player([
-                'name' => $request->input('name'),
-                'image' => $imagePath,
-                'birthday' => $request->input('birthday'),
-                'play' => $request->input('play'),
-                'club' => $request->input('club'),
-                'called' => $request->input('called'),
-            ]);
-    
-            $image->save();
-        }
-    
+
+        $imagePath = $request->file('image')->store('images', 'public');
+        $clubPath = $request->file('club')->store('images', 'public'); // Store club image
+
+        $player = new Player([
+            'name' => $request->input('name'),
+            'image' => $imagePath,
+            'birthday' => $request->input('birthday'),
+            'play' => $request->input('play'),
+            'club' => $clubPath,
+            'called' => $request->input('called'),
+        ]);
+
+        $player->save();
+
         return response()->json([
-            'message' => 'Image created successfully',
+            'message' => 'Player created successfully',
         ]);
     }
 
-    public function show(Player $player){
+    public function show(Player $player)
+    {
         return response()->json([
-            'player' => $player
+            'player' => $player,
         ]);
     }
- 
+
     public function update(Request $request, Player $player)
     {
         $request->validate([
-            'name'=>'required',
-            'birthday'=>'required',
-            'play'=>'required',
-            'club'=>'required',
-            'called'=>'required',
+            'name' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'birthday' => 'required',
+            'play' => 'required',
+            'club' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Changed 'club' validation to image
+            'called' => 'required',
         ]);
-    
-        $player->fill($request->except('image'))->update();
-    
+
+        $player->update($request->except('image'));
+
         if ($request->hasFile('image')) {
-            // Supprimez l'ancienne image s'il y en a une
+            // Supprimer l'ancienne image s'il y en a une
             Storage::disk('public')->delete($player->image);
-    
-            // Enregistrez la nouvelle image
+
+            // Enregistrer la nouvelle image
             $imagePath = $request->file('image')->store('images', 'public');
             $player->image = $imagePath;
             $player->save();
         }
-    
+
+        if ($request->hasFile('club')) {
+            // Supprimer l'ancienne image de club s'il y en a une
+            Storage::disk('public')->delete($player->club);
+
+            // Enregistrer la nouvelle image de club
+            $clubPath = $request->file('club')->store('images', 'public');
+            $player->club = $clubPath;
+            $player->save();
+        }
+
         return response()->json([
-            'message' => 'Player updated successfully'
+            'message' => 'Player updated successfully',
         ]);
     }
 
     public function destroy(Player $player)
     {
-        return response($player->delete());
+        // Supprimer l'image de joueur et d'image de club
+        Storage::disk('public')->delete($player->image);
+        Storage::disk('public')->delete($player->club);
+
+        $player->delete();
+
+        return response()->json([
+            'message' => 'Player deleted successfully',
+        ]);
     }
 }

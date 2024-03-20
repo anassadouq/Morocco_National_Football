@@ -89,7 +89,7 @@ export default function Create(){
                                     </td>
                                     <td>
                                         <b> : </b>
-                                        <input type="text" name="club" onChange={(e)=>{setClub(e.target.value)}} className="my-4"/>
+                                        <input type="file" name="club" onChange={(e)=>setClub(e.target.files[0])} className="my-4"/>
                                     </td>
                                 </tr>
                                 <tr>
