@@ -31,11 +31,11 @@ function PlayerCard({ player, onDelete }) {
 
   return (
     <div className="col-md-3 mb-2">
-      <div className="card">
+      <div className="card h-100">
         <div className="card-header" style={{ padding: "0" }}>
           <img src={`http://127.0.0.1:8000/storage/${player.image}`} style={{ width: "100%" }}/>
         </div>
-        <div className="card-body">
+        <div className="card-body d-flex flex-column justify-content-between">
           <h5 className="card-title">
             <b>{player.name}</b>
             <span className="position-absolute end-0" style={{ fontSize: "12px" }}>
@@ -49,14 +49,14 @@ function PlayerCard({ player, onDelete }) {
               {player.called}
             </span>
           </h5>
-          <Link to={`/update/${player.id}`}>
-            <button className="btn btn-outline-secondary mx-1">
+          <div>
+            <Link to={`/update/${player.id}`} className="btn btn-secondary mx-1">
               <LuEdit />
+            </Link>
+            <button className="btn btn-danger me-2" onClick={() => onDelete(player.id)}>
+              <RiDeleteBin5Line />
             </button>
-          </Link>
-          <button onClick={() => onDelete(player.id)} className="btn btn-outline-danger">
-            <RiDeleteBin5Line />
-          </button>
+          </div>
         </div>
       </div>
     </div>

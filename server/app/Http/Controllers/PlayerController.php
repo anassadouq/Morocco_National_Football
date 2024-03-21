@@ -20,12 +20,12 @@ class PlayerController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'birthday' => 'required',
             'play' => 'required',
-            'club' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Changed 'club' validation to image
+            'club' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'called' => 'required',
         ]);
 
         $imagePath = $request->file('image')->store('images', 'public');
-        $clubPath = $request->file('club')->store('images', 'public'); // Store club image
+        $clubPath = $request->file('club')->store('images', 'public');
 
         $player = new Player([
             'name' => $request->input('name'),
@@ -57,7 +57,7 @@ class PlayerController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'birthday' => 'required',
             'play' => 'required',
-            'club' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Changed 'club' validation to image
+            'club' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'called' => 'required',
         ]);
 
