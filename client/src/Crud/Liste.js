@@ -50,10 +50,10 @@ function PlayerCard({ player, onDelete }) {
             </span>
           </h5>
           <div>
-            <Link to={`/update/${player.id}`} className="btn btn-secondary mx-1">
+            <Link to={`/update/${player.id}`} className="btn btn-secondary">
               <LuEdit />
             </Link>
-            <button className="btn btn-danger me-2" onClick={() => onDelete(player.id)}>
+            <button className="btn btn-danger mx-2" onClick={() => onDelete(player.id)}>
               <RiDeleteBin5Line />
             </button>
           </div>
