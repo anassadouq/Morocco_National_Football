@@ -4,9 +4,9 @@ import './HomePage.css';
 
 export default function HomePage(){
     return(
-        <div>
+        <div className="home-page">
             <Navbar/>
-            <img src={"../images/maroc1.jpg"} className="home-page"/>
+            <img src={"../images/moroccan_player.jpeg"} className="home-page"/>
         </div>
     )
 }

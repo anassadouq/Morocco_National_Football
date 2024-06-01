@@ -50,7 +50,7 @@ export default function Create(){
                                     </td>
                                     <td>
                                         <b> : </b>
-                                        <input type="text" name="name" onChange={(e)=>{setName(e.target.value)}} className="my-4"/>
+                                        <input type="text" name="name" placeholder="Player name" onChange={(e)=>{setName(e.target.value)}} className="my-4"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,7 +73,7 @@ export default function Create(){
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>Play_as</b>
+                                        <b>Play as</b>
                                     </td>
                                     <td>
                                         <b> : </b>

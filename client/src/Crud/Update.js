@@ -8,11 +8,11 @@ export default function Update() {
     const navigate = useNavigate();
     const { id } = useParams();
     
-    //const [image, setImage] = useState(null);
+    const [image, setImage] = useState(null);
     const [name,setName] = useState('')
     const [birthday,setBirthday] = useState('')
     const [play,setPlay] = useState('')
-    //const [club,setClub] = useState('')
+    const [club,setClub] = useState('')
     const [called,setCalled] = useState('')
 
 
@@ -23,12 +23,12 @@ export default function Update() {
     const fetchPlayer = async() =>{
         await axios.get(`http://127.0.0.1:8000/api/player/${id}`)
         .then(({ data }) => {
-            const { /*image*/ name, birthday, play, /*club*/ called } = data.player
-            //setImage(image)
+            const { imag, name, birthday, play, club, called } = data.player
+            setImage(image)
             setName(name)
             setBirthday(birthday)
             setPlay(play)
-            //setClub(club)
+            setClub(club)
             setCalled(called)
 
         }).catch(({ response: {data} }) => {
@@ -44,7 +44,7 @@ export default function Update() {
         formData.append('birthday', birthday);
         formData.append('play', play);
         formData.append('called', called);
-        /*
+        
         if (image) {
             formData.append('image', image);
         }
@@ -52,7 +52,7 @@ export default function Update() {
         if (club) {
             formData.append('club', club);
         }
-        */
+        
     
         await axios.post(`http://127.0.0.1:8000/api/player/${id}`, formData)
             .then(({ data }) => {
@@ -75,7 +75,7 @@ export default function Update() {
                     <div className="card-body"></div>
                     <form onSubmit={updatePlayer}>
                         <table>
-                            {/*
+                            
                             <tr>
                                 <td>
                                     <b>Image</b>
@@ -85,7 +85,7 @@ export default function Update() {
                                     <input type="file" name="image" onChange={(e)=>{setImage(e.target.files[0])}} className="my-4"/>
                                 </td>
                             </tr>
-                            */}
+                            
                             <tr>
                                 <td>
                                     <b>Name</b>
@@ -116,7 +116,7 @@ export default function Update() {
                                     <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1" checked={play === "forward"}/>Forward
                                 </td>
                             </tr>
-                            {/*
+                            
                             <tr>
                                 <td>
                                     <b>Club</b>
@@ -126,7 +126,7 @@ export default function Update() {
                                     <input type="file" name="club" onChange={(e)=>{setClub(e.target.files[0])}} className="my-4"/>
                                 </td>
                             </tr>
-                            */}
+                            
                             <tr>
                                 <td>
                                     <b>Called</b>
