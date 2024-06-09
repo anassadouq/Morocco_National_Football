@@ -20,19 +20,21 @@ class PlayerController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'birthday' => 'required',
             'play' => 'required',
-            'club' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'club' => 'required',
+            'clubImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'called' => 'required',
         ]);
 
         $imagePath = $request->file('image')->store('images', 'public');
-        $clubPath = $request->file('club')->store('images', 'public');
+        $clubImagePath = $request->file('clubImage')->store('images', 'public');
 
         $player = new Player([
             'name' => $request->input('name'),
             'image' => $imagePath,
             'birthday' => $request->input('birthday'),
             'play' => $request->input('play'),
-            'club' => $clubPath,
+            'club' => $request->input('club'),
+            'clubImage' => $clubImagePath,
             'called' => $request->input('called'),
         ]);
 
@@ -57,7 +59,8 @@ class PlayerController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'birthday' => 'required',
             'play' => 'required',
-            'club' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'club' => 'required',
+            'clubImage' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'called' => 'required',
         ]);
 
@@ -73,13 +76,13 @@ class PlayerController extends Controller
             $player->save();
         }
 
-        if ($request->hasFile('club')) {
-            // Supprimer l'ancienne image de club s'il y en a une
-            Storage::disk('public')->delete($player->club);
+        if ($request->hasFile('clubImage')) {
+            // Supprimer l'ancienne image de clubImage s'il y en a une
+            Storage::disk('public')->delete($player->clubImage);
 
-            // Enregistrer la nouvelle image de club
-            $clubPath = $request->file('club')->store('images', 'public');
-            $player->club = $clubPath;
+            // Enregistrer la nouvelle image de clubImage
+            $clubImagePath = $request->file('clubImage')->store('images', 'public');
+            $player->clubImage = $clubImagePath;
             $player->save();
         }
 
@@ -90,9 +93,9 @@ class PlayerController extends Controller
 
     public function destroy(Player $player)
     {
-        // Supprimer l'image de joueur et d'image de club
+        // Supprimer l'image de joueur et d'image de clubImage
         Storage::disk('public')->delete($player->image);
-        Storage::disk('public')->delete($player->club);
+        Storage::disk('public')->delete($player->clubImage);
 
         $player->delete();
 

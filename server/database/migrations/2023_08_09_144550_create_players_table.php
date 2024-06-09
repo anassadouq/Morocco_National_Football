@@ -15,6 +15,7 @@ return new class extends Migration
             $table->date('birthday');
             $table->string('play');
             $table->string('club');
+            $table->string('clubImage');
             $table->string('called');
             $table->timestamps();
         });

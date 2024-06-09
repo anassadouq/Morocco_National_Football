@@ -14,6 +14,7 @@ class Player extends Model
         'birthday',
         'play',
         'club',
+        'clubImage',
         'called'
     ];
 }

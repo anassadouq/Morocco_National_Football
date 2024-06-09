@@ -11,6 +11,7 @@ export default function Create(){
     const [birthday,setBirthday] = useState('')
     const [play,setPlay] = useState('')
     const [club,setClub] = useState('')
+    const [clubImage,setClubImage] = useState('')
     const [called,setCalled] = useState('')
 
     const createPlayer = async(e)=>{
@@ -21,6 +22,7 @@ export default function Create(){
         formData.append('birthday', birthday)
         formData.append('play', play)
         formData.append('club', club)
+        formData.append('clubImage', clubImage)
         formData.append('called', called)
 
         console.log(formData)
@@ -89,7 +91,16 @@ export default function Create(){
                                     </td>
                                     <td>
                                         <b> : </b>
-                                        <input type="file" name="club" onChange={(e)=>setClub(e.target.files[0])} className="my-4"/>
+                                        <input type="text" name="club" placeholder="Club name" onChange={(e)=>{setClub(e.target.value)}} className="my-4"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>Image Club</b>
+                                    </td>
+                                    <td>
+                                        <b> : </b>
+                                        <input type="file" name="clubImage" onChange={(e)=>setClubImage(e.target.files[0])} className="my-4"/>
                                     </td>
                                 </tr>
                                 <tr>

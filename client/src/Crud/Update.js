@@ -8,11 +8,12 @@ export default function Update() {
     const navigate = useNavigate();
     const { id } = useParams();
     
-    const [image, setImage] = useState(null);
+    //const [image, setImage] = useState(null);
     const [name,setName] = useState('')
     const [birthday,setBirthday] = useState('')
     const [play,setPlay] = useState('')
     const [club,setClub] = useState('')
+    //const [clubImage,setClubImage] = useState('')
     const [called,setCalled] = useState('')
 
 
@@ -23,12 +24,13 @@ export default function Update() {
     const fetchPlayer = async() =>{
         await axios.get(`http://127.0.0.1:8000/api/player/${id}`)
         .then(({ data }) => {
-            const { imag, name, birthday, play, club, called } = data.player
-            setImage(image)
+            const { /*image*/ name, birthday, play, club, /*clubImage*/ called } = data.player
+            //setImage(image)
             setName(name)
             setBirthday(birthday)
             setPlay(play)
             setClub(club)
+            //setClubImage(clubImage)
             setCalled(called)
 
         }).catch(({ response: {data} }) => {
@@ -43,16 +45,18 @@ export default function Update() {
         formData.append('name', name);
         formData.append('birthday', birthday);
         formData.append('play', play);
+        formData.append('club', club);
         formData.append('called', called);
         
+        /*
         if (image) {
             formData.append('image', image);
         }
 
-        if (club) {
-            formData.append('club', club);
+        if (clubImage) {
+            formData.append('clubImage', clubImage);
         }
-        
+        */
     
         await axios.post(`http://127.0.0.1:8000/api/player/${id}`, formData)
             .then(({ data }) => {
@@ -75,7 +79,7 @@ export default function Update() {
                     <div className="card-body"></div>
                     <form onSubmit={updatePlayer}>
                         <table>
-                            
+                            {/*
                             <tr>
                                 <td>
                                     <b>Image</b>
@@ -85,6 +89,7 @@ export default function Update() {
                                     <input type="file" name="image" onChange={(e)=>{setImage(e.target.files[0])}} className="my-4"/>
                                 </td>
                             </tr>
+                            */}
                             
                             <tr>
                                 <td>
@@ -116,16 +121,27 @@ export default function Update() {
                                     <input type="checkbox" name="play" value="forward" onChange={(e)=>{setPlay(e.target.value)}} className="my-4 mx-1" checked={play === "forward"}/>Forward
                                 </td>
                             </tr>
-                            
+
                             <tr>
                                 <td>
                                     <b>Club</b>
                                 </td>
                                 <td>
                                     <b> : </b>
-                                    <input type="file" name="club" onChange={(e)=>{setClub(e.target.files[0])}} className="my-4"/>
+                                    <input type="text" name="club" value={club} onChange={(e)=>{setClub(e.target.value)}} className="my-4"/>
                                 </td>
                             </tr>
+                            {/*
+                            <tr>
+                                <td>
+                                    <b>Image Club</b>
+                                </td>
+                                <td>
+                                    <b> : </b>
+                                    <input type="file" name="clubImage" onChange={(e)=>{setClubImage(e.target.files[0])}} className="my-4"/>
+                                </td>
+                            </tr>
+                            */}
                             
                             <tr>
                                 <td>
