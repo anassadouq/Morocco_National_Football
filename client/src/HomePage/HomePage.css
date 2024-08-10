@@ -6,3 +6,19 @@
     margin: 0;
     padding: 0;
 }
+
+@media (max-width: 768px) {
+    .home-page {
+        background-size: contain;
+        background-position: top;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .home-page {
+        background-size: contain;
+        background-position: top;
+        height: auto;
+    }
+}

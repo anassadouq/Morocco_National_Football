@@ -30,7 +30,7 @@ export default function Login() {
   };
 
   return (
-    <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
       <div className="my-4 card mx-auto" style={{ width: '600px' }}>
         <div className="card-body">
           <h1 className="text-center">Login</h1>
