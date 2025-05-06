@@ -24,7 +24,7 @@ export default function Update() {
     const fetchPlayer = async() =>{
         await axios.get(`http://127.0.0.1:8000/api/player/${id}`)
         .then(({ data }) => {
-            const { /*image*/ name, birthday, play, club, /*clubImage*/ called } = data.player
+            const { /*image,*/ name, birthday, play, club, /*clubImage*/ called } = data.player
             //setImage(image)
             setName(name)
             setBirthday(birthday)
@@ -52,7 +52,9 @@ export default function Update() {
         if (image) {
             formData.append('image', image);
         }
+        */
 
+        /*
         if (clubImage) {
             formData.append('clubImage', clubImage);
         }
@@ -88,7 +90,7 @@ export default function Update() {
                                     <b> : </b>
                                     <input type="file" name="image" onChange={(e)=>{setImage(e.target.files[0])}} className="my-4"/>
                                 </td>
-                            </tr>
+                            </tr>   
                             */}
                             
                             <tr>
